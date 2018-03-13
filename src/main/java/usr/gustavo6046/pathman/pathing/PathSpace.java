@@ -9,8 +9,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.PriorityQueue;
 
-import usr.gustavo6046.pathman.exceptions.InfiiniteLoopException;
-
+/**
+ * @author gustavo6046
+ *
+ *         The Path Space to which the Plan Space is compiled in order to find
+ *         the required action plan. It is **recommended** that the Plan Space
+ *         Manager is used to handle it, instead of accessing it directly!
+ * 
+ *         This is strategically equivalent to formulating the plan itself.
+ */
 public class PathSpace
 {
 	public PathNode						beginNode;
@@ -20,6 +27,13 @@ public class PathSpace
 
 	private HashSet<BaseRepresentative>	converting;
 
+	/**
+	 * The constructor. Simple as that.
+	 * 
+	 * @param _begin
+	 *            The beginning PathNode representative (i.e. Circumstance).
+	 * @throws ClassNotFoundException
+	 */
 	public PathSpace(NodeRepr _begin) throws ClassNotFoundException
 	{
 		allNodes = new LinkedList<>();
@@ -55,6 +69,14 @@ public class PathSpace
 		beginNode = _begin.asNode(this);
 	}
 
+	/**
+	 * Check if this BaseRepresentative (Action or Circumstance) already represents
+	 * a PathElement (PathNode or NodeLink), and if so, returns it.
+	 * 
+	 * @param orig
+	 *            The BaseRepresentative to check for
+	 * @return The corresponding PathElement (if any)
+	 */
 	public Optional<PathElement> checkResultFor(BaseRepresentative orig)
 	{
 		for ( PathNode p : allNodes )
@@ -119,13 +141,21 @@ public class PathSpace
 	// Dijkstra search
 	// =================
 
-	public Optional<List<NodeLink>> linkPath(Collection<PathNode> goalNodes) throws InfiiniteLoopException
+	/**
+	 * Performs a Dijkstra search to find a path from the beginning node (which is
+	 * currently defined as a field in PathSpace) to any of the here supplied
+	 * goalNodes.
+	 * 
+	 * @param goalNodes
+	 *            The nodes that must be reached
+	 * @return A list of NodeLinks (which Actions 'represent') that form the path,
+	 *         or none if no goal can be reached
+	 */
+	public Optional<List<NodeLink>> linkPath(Collection<PathNode> goalNodes)
 	{
 		HashSet<NodeLink> closedSet = new HashSet<>();
 		HashMap<NodeLink, Integer> rcosts = new HashMap<>();
 		HashMap<NodeLink, NodeLink> directions = new HashMap<>();
-		
-		int safety = 50000;
 
 		boolean goalReached = false;
 
@@ -141,43 +171,35 @@ public class PathSpace
 			{
 				if ( beginNode.outward.contains(other) )
 					return 0;
-				
+
 				return other.cost + rcosts.get(directions.get(other));
 			}
 		}
 
 		PriorityQueue<NodeLink> openSet = new PriorityQueue<>(new _Comp());
-		
+
 		for ( NodeLink l : beginNode.outward )
 			rcosts.put(l, 0);
-		
+
 		openSet.addAll(beginNode.outward);
 
 		NodeLink lastLink = null;
 
 		while ( openSet.size() > 0 )
 		{
-			safety--;
-			
-			if ( safety < 1 )
-			{
-				System.out.println("STOP!");
-				throw new InfiiniteLoopException();
-			}
-			
 			NodeLink currl = openSet.poll();
 			PathNode currn = currl.destination;
 			closedSet.add(currl);
-			
+
 			if ( currn == null )
 				continue;
-			
+
 			for ( NodeLink l : currn.outward )
 			{
 				if ( !closedSet.contains(l) )
 				{
 					directions.put(l, currl);
-					
+
 					if ( goalNodes.contains(l.destination) )
 					{
 						goalReached = true;
@@ -188,7 +210,7 @@ public class PathSpace
 					openSet.add(l);
 					rcosts.put(l, rcosts.get(currl) + 1);
 				}
-				
+
 			}
 
 			if ( goalReached )

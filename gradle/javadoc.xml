@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="public" author="true" classpath="/home/gustavo6046/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:/home/gustavo6046/.gradle/caches/modules-2/files-2.1/junit/junit/4.12/2973d150c0dc1fefe998f834810d68f278ea58ec/junit-4.12.jar" destdir="docs/" doctitle="Pathman v0.1.1 API" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="usr.gustavo6046.pathman.planning,usr.gustavo6046.pathman,usr.gustavo6046.pathman.pathing" source="1.8" sourcepath="../src/main/java" splitindex="true" use="true" version="true">
+            <link href="https://docs.oracle.com/javase/8/docs/api/"/>
+            <link href="file:/home/gustavo6046/Área%20de%20trabalho/docs/"/>
+        </javadoc>
+    </target>
+</project>

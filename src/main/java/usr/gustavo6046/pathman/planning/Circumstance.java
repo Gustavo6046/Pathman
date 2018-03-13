@@ -9,10 +9,31 @@ import usr.gustavo6046.pathman.pathing.NodeRepr;
 import usr.gustavo6046.pathman.pathing.PathNode;
 import usr.gustavo6046.pathman.pathing.PathSpace;
 
+/**
+ * @author gustavo6046
+ *
+ *         A Circumstance. Or rather, a graph element which stores data about a
+ *         possible situation, or as we say, a possible Circumstance. From game
+ *         conditions to object-specific properties, the gamma of data that can
+ *         be represented is immense.
+ */
 public abstract class Circumstance implements NodeRepr
 {
+	/**
+	 * @author gustavo6046
+	 *
+	 *         A Circumstance Matcher. It may be used to match one or more
+	 *         Circumstances, using a set of Conditions that are necessary by
+	 *         content, existence or inexistence in order to be compatible with this
+	 *         Matcher.
+	 */
 	public static class Matcher
 	{
+		/**
+		 * @author gustavo6046
+		 *
+		 *         A Matcher Builder.
+		 */
 		public static class Builder
 		{
 			private Matcher mt;
@@ -109,6 +130,13 @@ public abstract class Circumstance implements NodeRepr
 		space = _space;
 	}
 
+	/**
+	 * Creates a Matcher to which Circumstances must be **identical** by conditions,
+	 * their keys and even values, in order to match. Useful for Actions that take
+	 * an existing Circumstance as a possible starting prerequisite.
+	 * 
+	 * @return The resulting Matcher.
+	 */
 	public Matcher equalMatcher()
 	{
 		Matcher.Builder b = matcher();
@@ -121,6 +149,11 @@ public abstract class Circumstance implements NodeRepr
 
 	public abstract List<Condition> getConditions();
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	public boolean equals(Object other)
 	{
 		if ( other.getClass() != Circumstance.class )
@@ -142,6 +175,12 @@ public abstract class Circumstance implements NodeRepr
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see usr.gustavo6046.pathman.pathing.NodeRepr#asNode(usr.gustavo6046.pathman.
+	 * pathing.PathSpace)
+	 */
 	@Override
 	public PathNode asNode(PathSpace other) throws ClassNotFoundException
 	{
@@ -153,7 +192,12 @@ public abstract class Circumstance implements NodeRepr
 
 		return new PathNode(links);
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see usr.gustavo6046.pathman.pathing.BaseRepresentative#alsoConvert()
+	 */
 	@Override
 	public List<BaseRepresentative> alsoConvert()
 	{

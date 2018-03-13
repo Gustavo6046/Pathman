@@ -14,7 +14,7 @@ public class PathNode extends PathElement
 		inward = new LinkedList<>();
 		outward = new LinkedList<>();
 	}
-	
+
 	public PathNode(List<NodeLink> out)
 	{
 		this();
