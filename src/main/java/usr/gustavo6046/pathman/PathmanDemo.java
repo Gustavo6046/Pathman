@@ -9,7 +9,7 @@ import usr.gustavo6046.pathman.planning.Action;
 import usr.gustavo6046.pathman.planning.Circumstance;
 import usr.gustavo6046.pathman.planning.Condition;
 
-public class PathmanDemo
+public class PathmanDemo extends DemoClass
 {
 	public static void main(String[] args) throws ClassNotFoundException, KeyException, InfiiniteLoopException
 	{

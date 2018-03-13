@@ -1,4 +1,4 @@
-# Pathman _v0.1.0_
+# Pathman _v0.1.1_
 **A basic pathfinder and reverse planner in Java**, a simplistic AI project meant to solve arbitrary problems using the novel 2P (Planning & Pathing) model.
 
 ## What is '2P'? Two Players?

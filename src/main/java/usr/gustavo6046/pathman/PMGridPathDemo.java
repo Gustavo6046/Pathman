@@ -9,7 +9,7 @@ import usr.gustavo6046.pathman.planning.Action;
 import usr.gustavo6046.pathman.planning.Circumstance;
 import usr.gustavo6046.pathman.planning.Condition;
 
-public class PMGridPathDemo
+public class PMGridPathDemo extends DemoClass
 {
 	// Relatively simple grid-based Dijkstra search
 	// using PathMan. Note that this is NOT advised!
