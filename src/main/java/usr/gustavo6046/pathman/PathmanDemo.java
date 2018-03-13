@@ -41,10 +41,10 @@ public class PathmanDemo
 		Circumstance beginning = man.makeBaseCircumstance(
 				Optional.of("beginning"),
 				cbuilder
-				.addCondition("castleFlank", 0)
-				.addCondition("distance", 50)
-				.addCondition("dead", 0)
-				.addCondition("invading", 0)
+					.addCondition("castleFlank", 0)
+					.addCondition("distance", 50)
+					.addCondition("dead", 0)
+					.addCondition("invading", 0)
 				.build()
 		);
 		

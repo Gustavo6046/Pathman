@@ -125,7 +125,7 @@ public class PathSpace
 		HashMap<NodeLink, Integer> rcosts = new HashMap<>();
 		HashMap<NodeLink, NodeLink> directions = new HashMap<>();
 		
-		int safety = 150;
+		int safety = 50000;
 
 		boolean goalReached = false;
 

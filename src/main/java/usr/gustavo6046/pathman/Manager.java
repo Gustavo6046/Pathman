@@ -123,4 +123,12 @@ public class Manager
 		
 		return Optional.empty();
 	}
+	
+	public Optional<Circumstance> findForKey(String key)
+	{
+		if ( keyCircumstances.containsKey(key) )
+			return Optional.of(keyCircumstances.get(key));
+		
+		return Optional.empty();
+	}
 }
